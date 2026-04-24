@@ -3,426 +3,1762 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منيو تيرا | Tera VIP Menu</title>
+    <meta name="description" content="منيو تيرا كافيه - تجربة فاخرة من المأكولات والمشروبات والحلويات والأراكيل">
+    <title>تيرا كافيه | Terra Cafe</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Almarai:wght@400;700;800&family=Marhey:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --bg-dark: #0c0a09; /* لون بني/أسود عميق جداً */
-            --card-bg: linear-gradient(145deg, #1a1614, #120f0e); /* تدرج فخم للبطاقات */
-            --border-gold: rgba(212, 175, 55, 0.25);
-            --text-main: #f5f5f5;
-            --text-muted: #a8a29e;
-            --font-title: 'Aref Ruqaa', serif;
-            --font-body: 'Tajawal', sans-serif;
+            /* لوحة ألوان فاتحة عصرية */
+            --bg-cream: #faf6f0;
+            --bg-warm: #f3ede1;
+            --bg-card: #ffffff;
+            --bg-card-soft: #fdfaf4;
+
+            --accent-coffee: #6b4423;       /* بني قهوة دافئ */
+            --accent-coffee-light: #a07a55;
+            --accent-gold: #c89b3c;          /* ذهبي راقي */
+            --accent-gold-soft: #e9c977;
+            --accent-burgundy: #8b3a3a;      /* عنابي */
+
+            --text-dark: #2c1f17;
+            --text-body: #4a3729;
+            --text-muted: #8a7560;
+            --text-price: #6b4423;
+
+            --shadow-sm: 0 2px 8px rgba(107, 68, 35, 0.08);
+            --shadow-md: 0 6px 20px rgba(107, 68, 35, 0.10);
+            --shadow-lg: 0 12px 35px rgba(107, 68, 35, 0.15);
+
+            --border-soft: rgba(200, 155, 60, 0.25);
+            --border-strong: rgba(200, 155, 60, 0.55);
+
+            --font-display: 'Marhey', cursive;
+            --font-title: 'Almarai', sans-serif;
+            --font-body: 'Cairo', sans-serif;
         }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-body);
-            background-color: var(--bg-dark);
+            background: var(--bg-cream);
             margin: 0;
             padding: 0;
-            color: var(--text-main);
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* نقشة خفيفة جداً في الخلفية */
+            color: var(--text-body);
+            line-height: 1.6;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(200, 155, 60, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(107, 68, 35, 0.06) 0%, transparent 40%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23c89b3c' fill-opacity='0.04'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            min-height: 100vh;
         }
 
-        /* رأس الصفحة الفخم */
-        header {
+        /* ===== HEADER ===== */
+        .hero {
+            position: relative;
             text-align: center;
-            padding: 60px 20px 40px;
-            background: linear-gradient(to bottom, rgba(12, 10, 9, 0.9), var(--bg-dark)), url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1000&q=80') center/cover;
-            border-bottom: 2px solid var(--border-gold);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            padding: 80px 20px 90px;
+            background:
+                linear-gradient(135deg, rgba(250, 246, 240, 0.85), rgba(243, 237, 225, 0.75)),
+                url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1600&q=80') center/cover;
+            border-bottom: 1px solid var(--border-soft);
+            overflow: hidden;
         }
 
-        header h1 {
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 30%, rgba(250, 246, 240, 0.6) 100%);
+            pointer-events: none;
+        }
+
+        .hero-inner { position: relative; z-index: 2; }
+
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+
+        .brand-mark .seal {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-coffee));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 28px;
+            box-shadow: var(--shadow-md);
+            border: 3px solid #fff;
+        }
+
+        .brand-tag {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 6px;
+            color: var(--accent-coffee);
+            background: rgba(255,255,255,0.7);
+            padding: 6px 18px;
+            border-radius: 30px;
+            border: 1px solid var(--border-soft);
+            backdrop-filter: blur(6px);
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(70px, 13vw, 140px);
+            margin: 10px 0 5px;
+            background: linear-gradient(135deg, #6b4423 0%, #c89b3c 50%, #6b4423 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            letter-spacing: -2px;
+            filter: drop-shadow(0 4px 8px rgba(107, 68, 35, 0.15));
+        }
+
+        .hero .subtitle {
             font-family: var(--font-title);
-            font-size: 60px;
-            color: var(--gold);
-            margin: 0;
-            text-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            font-weight: 700;
+            font-size: clamp(16px, 3vw, 22px);
+            color: var(--text-dark);
+            margin: 8px 0 0;
+        }
+
+        .hero .tagline {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 14px;
             letter-spacing: 1px;
         }
 
-        header p {
-            font-size: 16px;
-            color: var(--gold-light);
-            margin: 5px 0 0;
-            font-weight: 400;
+        .hero-divider {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 22px;
+            color: var(--accent-gold);
+        }
+        .hero-divider span { font-size: 22px; }
+        .hero-divider .line {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
         }
 
-        /* شريط التنقل */
-        .category-nav {
-            display: flex;
-            overflow-x: auto;
-            background: rgba(12, 10, 9, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 15px 10px;
+        /* ===== NAVIGATION ===== */
+        .category-nav-wrapper {
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid var(--border-gold);
-            scrollbar-width: none;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            background: rgba(250, 246, 240, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-soft);
+            box-shadow: 0 4px 20px rgba(107, 68, 35, 0.05);
         }
 
+        .category-nav {
+            display: flex;
+            overflow-x: auto;
+            padding: 16px 14px;
+            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            scrollbar-width: none;
+        }
         .category-nav::-webkit-scrollbar { display: none; }
 
         .category-btn {
-            background: transparent;
-            border: 1px solid var(--border-gold);
-            color: var(--text-main);
-            padding: 10px 22px;
-            margin: 0 6px;
+            background: #fff;
+            border: 1.5px solid var(--border-soft);
+            color: var(--text-dark);
+            padding: 11px 22px;
             border-radius: 30px;
             cursor: pointer;
             white-space: nowrap;
-            font-family: var(--font-body);
+            font-family: var(--font-title);
             font-weight: 700;
-            font-size: 15px;
-            transition: all 0.3s ease;
+            font-size: 14.5px;
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
         }
 
-        .category-btn.active, .category-btn:hover {
-            background: var(--gold);
-            color: #000;
-            border-color: var(--gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        .category-btn .icon { font-size: 17px; }
+
+        .category-btn:hover {
             transform: translateY(-2px);
+            border-color: var(--accent-gold);
+            color: var(--accent-coffee);
         }
 
-        /* حاوية الأقسام */
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--accent-coffee), var(--accent-coffee-light));
+            color: #fff;
+            border-color: var(--accent-coffee);
+            box-shadow: 0 8px 18px rgba(107, 68, 35, 0.30);
+            transform: translateY(-1px);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
         .menu-container {
-            padding: 40px 15px;
-            max-width: 900px;
-            margin: auto;
-            padding-bottom: 80px;
+            padding: 50px 18px 90px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .menu-section { display: none; }
-        .menu-section.active { display: block; animation: fadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .menu-section.active {
+            display: block;
+            animation: fadeUp 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
 
-        .section-title {
-            font-family: var(--font-title);
-            color: var(--gold);
-            font-size: 38px;
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-header {
             text-align: center;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+            margin: 0 0 36px;
+            position: relative;
         }
 
-        .menu-items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
+        .section-header h2 {
+            font-family: var(--font-display);
+            color: var(--accent-coffee);
+            font-size: clamp(36px, 6vw, 52px);
+            margin: 0;
+            display: inline-block;
+            position: relative;
+            background: linear-gradient(135deg, var(--accent-coffee) 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        /* كرت الصنف المطور (صورة أكبر وتنسيق أفخم) */
-        .menu-item {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 15px;
+        .section-header .sub {
+            display: block;
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        .section-header::after {
+            content: "❦";
+            display: block;
+            font-size: 22px;
+            color: var(--accent-gold);
+            margin-top: 8px;
+        }
+
+        .subsection-title {
+            font-family: var(--font-display);
+            color: var(--accent-burgundy);
+            font-size: clamp(28px, 4vw, 38px);
+            text-align: center;
+            margin: 50px 0 28px;
+            position: relative;
             display: flex;
             align-items: center;
-            border: 1px solid var(--border-gold);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+            justify-content: center;
+            gap: 18px;
+        }
+        .subsection-title::before,
+        .subsection-title::after {
+            content: "";
+            flex: 0 0 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        }
+
+        /* ===== ITEMS GRID ===== */
+        .menu-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+            gap: 22px;
+        }
+
+        /* ===== ITEM CARD ===== */
+        .menu-item {
+            background: var(--bg-card);
+            border-radius: 18px;
+            padding: 14px;
+            display: flex;
+            align-items: stretch;
+            gap: 16px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        box-shadow 0.35s ease,
+                        border-color 0.35s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: "";
+            position: absolute;
+            top: 0; right: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-gold), var(--accent-coffee));
+            opacity: 0;
+            transition: opacity 0.35s;
         }
 
         .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(212, 175, 55, 0.15);
-            border-color: var(--gold);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-gold);
         }
 
-        /* الصورة بحجم كبير وملفت */
+        .menu-item:hover::before { opacity: 1; }
+
+        .item-image-wrap {
+            position: relative;
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--bg-warm);
+            box-shadow: 0 4px 12px rgba(107, 68, 35, 0.18);
+        }
+
         .item-image {
-            width: 110px;
-            height: 110px;
-            border-radius: 12px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            margin-left: 18px;
-            border: 2px solid var(--border-gold);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            flex-shrink: 0; /* لمنع الصورة من التصغر */
+            transition: transform 0.6s ease;
+            display: block;
+        }
+
+        .menu-item:hover .item-image { transform: scale(1.08); }
+
+        .item-image-wrap::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(107, 68, 35, 0.25));
+            pointer-events: none;
         }
 
         .item-details {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
+            min-width: 0;
+            padding: 4px 4px 4px 0;
         }
 
         .item-name {
-            font-size: 18px;
+            font-family: var(--font-title);
+            font-size: 17px;
             font-weight: 800;
-            margin: 0 0 6px 0;
-            color: #ffffff;
-            line-height: 1.3;
+            margin: 0 0 6px;
+            color: var(--text-dark);
+            line-height: 1.4;
         }
 
         .item-desc {
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--text-muted);
-            margin: 0 0 10px 0;
-            line-height: 1.5;
+            margin: 0 0 10px;
+            line-height: 1.55;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .item-price {
-            font-size: 20px;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 5px;
+            background: linear-gradient(135deg, rgba(200, 155, 60, 0.12), rgba(107, 68, 35, 0.08));
+            color: var(--text-price);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-family: var(--font-title);
+            font-size: 16px;
             font-weight: 800;
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.08);
-            padding: 6px 15px;
-            border-radius: 8px;
-            align-self: flex-start; /* ليكون السعر على اليمين تحت النص */
-            display: inline-block;
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--border-soft);
+            align-self: flex-start;
+            white-space: nowrap;
         }
 
-        .currency {
-            font-size: 12px;
-            color: var(--gold-light);
-            font-weight: 400;
-            margin-right: 3px;
+        .item-price .currency {
+            font-size: 11.5px;
+            color: var(--accent-coffee-light);
+            font-weight: 600;
+            margin-right: 2px;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, transparent, rgba(243, 237, 225, 0.8));
+            border-top: 1px solid var(--border-soft);
+            color: var(--text-muted);
         }
 
-        /* توسيط القائمة في الشاشات الكبيرة */
+        footer .brand {
+            font-family: var(--font-display);
+            font-size: 36px;
+            background: linear-gradient(135deg, var(--accent-coffee), var(--accent-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        footer .copy {
+            font-size: 12.5px;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .hero { padding: 60px 16px 70px; }
+            .menu-container { padding: 36px 12px 70px; }
+            .menu-items-grid { grid-template-columns: 1fr; gap: 16px; }
+            .item-image-wrap { width: 100px; height: 100px; }
+            .item-name { font-size: 15.5px; }
+            .item-price { font-size: 14.5px; padding: 5px 11px; }
+            .category-btn { padding: 9px 16px; font-size: 13.5px; }
+        }
+
         @media (min-width: 768px) {
-            .category-nav { justify-content: center; }
-            .item-image { width: 130px; height: 130px; } /* تكبير إضافي في الايباد والكمبيوتر */
+            .item-image-wrap { width: 140px; height: 140px; }
+            .item-name { font-size: 18.5px; }
         }
+
+        @media (min-width: 1024px) {
+            .menu-items-grid {
+                grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            }
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        .to-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-coffee), var(--accent-gold));
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 200;
+            transition: transform 0.3s;
+        }
+        .to-top:hover { transform: translateY(-3px); }
+        .to-top.visible { display: flex; }
+
+        /* لتحسين تحميل الصور */
+        img { background: var(--bg-warm); }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>تيـــرا</h1>
-        <p>التجربة الملكية للمذاق الرائع</p>
+    <!-- ============ HERO ============ -->
+    <header class="hero">
+        <div class="hero-inner">
+            <div class="brand-mark">
+                <div class="seal">☕</div>
+            </div>
+            <div class="brand-tag">TERRA · CAFE</div>
+            <h1>تـيـرا</h1>
+            <div class="subtitle">المذاق الذي يصنع الذكريات</div>
+            <div class="tagline">قائمة الطعام والمشروبات</div>
+            <div class="hero-divider">
+                <span class="line"></span>
+                <span>✦</span>
+                <span class="line"></span>
+            </div>
+        </div>
     </header>
 
-    <div class="category-nav">
-        <button class="category-btn active" onclick="showSection('shawarma')">الشاورما والبركر</button>
-        <button class="category-btn" onclick="showSection('crispy')">الكرسبي والريزو</button>
-        <button class="category-btn" onclick="showSection('drinks')">القهوة والمشروبات</button>
-        <button class="category-btn" onclick="showSection('sweets')">الحلويات</button>
-        <button class="category-btn" onclick="showSection('hookah')">الأراكيل</button>
+    <!-- ============ NAV ============ -->
+    <div class="category-nav-wrapper">
+        <nav class="category-nav">
+            <button class="category-btn active" data-target="shawarma">
+                <span class="icon">🥙</span><span>الشاورما والبركر</span>
+            </button>
+            <button class="category-btn" data-target="crispy">
+                <span class="icon">🍗</span><span>الكرسبي والريزو</span>
+            </button>
+            <button class="category-btn" data-target="coffee">
+                <span class="icon">☕</span><span>القهوة والمشروبات الساخنة</span>
+            </button>
+            <button class="category-btn" data-target="drinks">
+                <span class="icon">🍹</span><span>المشروبات والكوكتيلات</span>
+            </button>
+            <button class="category-btn" data-target="sweets">
+                <span class="icon">🍰</span><span>الحلويات</span>
+            </button>
+            <button class="category-btn" data-target="hookah">
+                <span class="icon">💨</span><span>الأراكيل</span>
+            </button>
+        </nav>
     </div>
 
-    <div class="menu-container">
-        
-        <div id="shawarma" class="menu-section active">
-            <h2 class="section-title">الشاورما</h2>
+    <!-- ============ MENU ============ -->
+    <main class="menu-container">
+
+        <!-- ===== الشاورما والبركر ===== -->
+        <section id="shawarma" class="menu-section active">
+            <div class="section-header">
+                <h2>الشاورما</h2>
+                <span class="sub">SHAWARMA</span>
+            </div>
+
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1619881589316-56c7f9e6b587?auto=format&fit=crop&w=400&q=80" class="item-image" alt="شاورما لحم">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سندويش شاورما لحم حجري" src="https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">سندويش شاورما لحم حجري / فرنسي</p>
-                        <p class="item-desc">شاورما لحم طازج بتتبيلة تيرا الخاصة</p>
+                        <h3 class="item-name">سندويش شاورما لحم حجري</h3>
+                        <p class="item-desc">شاورما لحم طازجة بتتبيلة تيرا الخاصة على خبز الصاج</p>
                         <div class="item-price">2500 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1662116765994-3d96417d6b38?auto=format&fit=crop&w=400&q=80" class="item-image" alt="شاورما دجاج">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سندويش شاورما دجاج حجري" src="https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">سندويش شاورما دجاج حجري / فرنسي</p>
-                        <p class="item-desc">دجاج مشوي بعناية مع صوص الثومية</p>
+                        <h3 class="item-name">سندويش شاورما دجاج حجري</h3>
+                        <p class="item-desc">دجاج مشوي بعناية مع صوص الثوم على خبز الصاج</p>
                         <div class="item-price">2000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1645696301019-35adcc18fc21?auto=format&fit=crop&w=400&q=80" class="item-image" alt="طبق شاورما">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سندويش شاورما دجاج فرنسي" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">طبق شاورما تيرا</p>
-                        <p class="item-desc">طبق فاخر متكامل مع البطاطس والمقبلات</p>
+                        <h3 class="item-name">سندويش شاورما دجاج فرنسي</h3>
+                        <p class="item-desc">شاورما دجاج بنكهة فرنسية مميزة على خبز الباجيت</p>
+                        <div class="item-price">2500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سندويش شاورما لحم فرنسي" src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">سندويش شاورما لحم فرنسي</h3>
+                        <p class="item-desc">شاورما لحم بنكهة فرنسية فاخرة على خبز الباجيت</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="نصف طبق شاورما" src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">نصف طبق شاورما</h3>
+                        <p class="item-desc">نصف طبق متكامل مع البطاطس المقلية والمقبلات</p>
+                        <div class="item-price">6000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="طبق شاورما تيرا" src="https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">طبق شاورما تيرا</h3>
+                        <p class="item-desc">طبق فاخر متكامل مع البطاطس والمقبلات والصوص</p>
                         <div class="item-price">10000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كيلو شاورما لحم" src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كيلو شاورما لحم</h3>
+                        <p class="item-desc">كيلو كامل من شاورما اللحم الطازجة جاهز للعائلة</p>
+                        <div class="item-price">20000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كيلو شاورما دجاج" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كيلو شاورما دجاج</h3>
+                        <p class="item-desc">كيلو كامل من شاورما الدجاج الطازجة جاهز للعائلة</p>
+                        <div class="item-price">28000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
             </div>
 
-            <h2 class="section-title" style="margin-top: 50px;">البركر</h2>
+            <h3 class="subsection-title">البركر</h3>
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" class="item-image" alt="بركر كلاسيك">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="بركر كلاسيك" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">بركر كلاسيك / دجاج</p>
-                        <p class="item-desc">قطعة برجر طازجة مع الخس والجبن</p>
+                        <h3 class="item-name">بركر كلاسيك</h3>
+                        <p class="item-desc">قطعة برجر طازجة مع الخس والطماطم والصوص الخاص</p>
                         <div class="item-price">2500 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80" class="item-image" alt="بركر تيرا">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="بركر دجاج" src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">بركر تيرا دبل + كولا</p>
-                        <p class="item-desc">شريحتين من اللحم الفاخر مع الجبن الذائب</p>
+                        <h3 class="item-name">بركر دجاج</h3>
+                        <p class="item-desc">برجر دجاج مقرمش مع الخس والمايونيز</p>
+                        <div class="item-price">2500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="جيز بركر" src="https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">جيز بركر</h3>
+                        <p class="item-desc">برجر مع الجبنة الذائبة والخضروات الطازجة</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="وجبة بركر مع كولا" src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">وجبة بركر + كولا</h3>
+                        <p class="item-desc">برجر كلاسيك مع البطاطس المقلية وكولا منعشة</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="بركر تيرا دبل" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">بركر تيرا دبل + كولا</h3>
+                        <p class="item-desc">شريحتين من اللحم الفاخر مع الجبن الذائب وكولا</p>
                         <div class="item-price">3500 <span class="currency">ريال</span></div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="crispy" class="menu-section">
-            <h2 class="section-title">الكرسبي</h2>
+        <!-- ===== الكرسبي والريزو ===== -->
+        <section id="crispy" class="menu-section">
+            <div class="section-header">
+                <h2>الكرسبي</h2>
+                <span class="sub">CRISPY</span>
+            </div>
+
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=400&q=80" class="item-image" alt="زنجر">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سندويش زنجر كلاسيك" src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">سندويش زنجر كلاسيك / سبايسي</p>
-                        <p class="item-desc">دجاج مقرمش ذهبي مع صوص حار أو عادي</p>
+                        <h3 class="item-name">سندويش زنجر كلاسيك</h3>
+                        <p class="item-desc">دجاج مقرمش ذهبي مع صوص خاص</p>
                         <div class="item-price">3000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1626804475297-41609ea004eb?auto=format&fit=crop&w=400&q=80" class="item-image" alt="تويستر">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سندويش زنجر بالجبن" src="https://images.unsplash.com/photo-1513185158878-8d8c2a2a3da3?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">وجبة تويستر</p>
+                        <h3 class="item-name">سندويش زنجر بالجبن</h3>
+                        <p class="item-desc">زنجر مقرمش مع طبقة سخية من الجبن الذائب</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سندويش زنجر سبايسي" src="https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">سندويش زنجر سبايسي</h3>
+                        <p class="item-desc">زنجر مقرمش بنكهة حارة لمحبي التوابل</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مكس سندويش زنجر تيرا" src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مكس سندويش زنجر تيرا</h3>
+                        <p class="item-desc">خلطة تيرا الحصرية من الزنجر بإضافات مميزة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="تويستر" src="https://images.unsplash.com/photo-1626804475297-41608ea09aeb?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">تويستر</h3>
                         <p class="item-desc">قطع الدجاج المقرمشة الملفوفة بخبز التورتيلا</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="وجبة تويستر" src="https://images.unsplash.com/photo-1565299715199-866c917206bb?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">وجبة تويستر</h3>
+                        <p class="item-desc">تويستر مع البطاطس المقلية ومشروب منعش</p>
+                        <div class="item-price">5500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="وجبة زنجر" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">وجبة زنجر</h3>
+                        <p class="item-desc">سندويش زنجر مع البطاطس ومشروب غازي بارد</p>
                         <div class="item-price">5500 <span class="currency">ريال</span></div>
                     </div>
                 </div>
             </div>
 
-            <h2 class="section-title" style="margin-top: 50px;">الريزو</h2>
+            <h3 class="subsection-title">الريزو</h3>
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=400&q=80" class="item-image" alt="ريزو">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ريزو كلاسيك" src="https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">ريزو كلاسيك / شاورما</p>
-                        <p class="item-desc">أرز مبهر مع قطع الدجاج أو الشاورما والصوص</p>
+                        <h3 class="item-name">ريزو كلاسيك</h3>
+                        <p class="item-desc">أرز مبهر مع الدجاج والصوص الخاص</p>
                         <div class="item-price">4000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1564834724105-918b73d1b9e0?auto=format&fit=crop&w=400&q=80" class="item-image" alt="مكس ريزو">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ريزو بالجبن" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">مكس ريزو تيرا</p>
+                        <h3 class="item-name">ريزو بالجبن</h3>
+                        <p class="item-desc">أرز كريمي مع طبقة من الجبن الذائب الفاخر</p>
+                        <div class="item-price">4500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ريزو سبايسي" src="https://images.unsplash.com/photo-1604908554007-fdc8a4b14edc?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ريزو سبايسي</h3>
+                        <p class="item-desc">أرز مع الدجاج بنكهة حارة لمحبي التوابل</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ريزو شاورما دجاج" src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ريزو شاورما دجاج</h3>
+                        <p class="item-desc">أرز مع شاورما الدجاج الطازجة والصوص</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ريزو شاورما لحم" src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ريزو شاورما لحم</h3>
+                        <p class="item-desc">أرز فاخر مع شاورما اللحم الطازجة</p>
+                        <div class="item-price">4500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مكس ريزو تيرا" src="https://images.unsplash.com/photo-1633945274405-b6c8b8d61a8a?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مكس ريزو تيرا</h3>
                         <p class="item-desc">تشكيلة فاخرة من الريزو بالخلطة السرية</p>
                         <div class="item-price">5000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="drinks" class="menu-section">
-            <h2 class="section-title">القهوة التركية والعربية</h2>
+        <!-- ===== القهوة والمشروبات الساخنة ===== -->
+        <section id="coffee" class="menu-section">
+            <div class="section-header">
+                <h2>القهوة التركية والعربية</h2>
+                <span class="sub">TURKISH & ARABIC COFFEE</span>
+            </div>
+
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=400&q=80" class="item-image" alt="قهوة تركية">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="قهوة تركيا" src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">قهوة تركية / بالبندق / شوكليتيه</p>
-                        <p class="item-desc">قهوة أصيلة محضرة على الأصول</p>
+                        <h3 class="item-name">قهوة تركيا</h3>
+                        <p class="item-desc">قهوة تركية أصيلة محضرة على الأصول</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="قهوة تركيا وسط" src="https://images.unsplash.com/photo-1599639957043-f3aa5c986398?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">قهوة تركيا وسط</h3>
+                        <p class="item-desc">قهوة تركية بدرجة سكر متوسطة</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="قهوة بالبندق" src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">قهوة بالبندق</h3>
+                        <p class="item-desc">قهوة تركية ممزوجة بنكهة البندق الفاخر</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="قهوة شوكليتيه" src="https://images.unsplash.com/photo-1542990253-0b8be3acc0d3?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">قهوة شوكليتيه</h3>
+                        <p class="item-desc">قهوة تركية بنكهة الشوكولاتة الغنية</p>
                         <div class="item-price">3000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
             </div>
 
-            <h2 class="section-title" style="margin-top: 50px;">المشروبات الباردة والساخنة</h2>
+            <h3 class="subsection-title">القهوة المثلجة</h3>
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=400&q=80" class="item-image" alt="ايس لاتيه">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ايس امريكانو" src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">ايس سبانش لاتيه / موكا</p>
-                        <p class="item-desc">قهوة مثلجة منعشة مع نكهتك المفضلة</p>
+                        <h3 class="item-name">ايس امريكانو</h3>
+                        <p class="item-desc">إسبريسو مثلج منعش مع الماء البارد</p>
                         <div class="item-price">4000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67ef84?auto=format&fit=crop&w=400&q=80" class="item-image" alt="كابتشينو">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ايس لاتيه" src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">كابتشينو / فلات وايت / لاتيه</p>
+                        <h3 class="item-name">ايس لاتيه</h3>
+                        <p class="item-desc">قهوة لاتيه باردة مع الحليب والثلج</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ايس موكا" src="https://images.unsplash.com/photo-1572286258217-215cf8e9c0bd?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ايس موكا</h3>
+                        <p class="item-desc">قهوة باردة مع الشوكولاتة والكريمة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ايس كاراميلو" src="https://images.unsplash.com/photo-1578314675229-a17e08bdb71b?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ايس كاراميلو</h3>
+                        <p class="item-desc">قهوة مثلجة بطعم الكراميل الذهبي</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ايس سبانش لاتيه" src="https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ايس سبانش لاتيه</h3>
+                        <p class="item-desc">لاتيه بارد بنكهة إسبانية مميزة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">كلاسيكيات القهوة</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="اسبريسو سنكل" src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">اسبريسو سنكل</h3>
+                        <p class="item-desc">جرعة واحدة من الإسبريسو الإيطالي الأصيل</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="اسبريسو دبل شوت" src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">اسبريسو دبل شوت</h3>
+                        <p class="item-desc">جرعتان من الإسبريسو لمحبي القهوة القوية</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="امريكانو" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">امريكانو</h3>
+                        <p class="item-desc">إسبريسو مع الماء الساخن لقوام مميز</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كابتشينو" src="https://images.unsplash.com/photo-1572442388796-11668a67ef84?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كابتشينو</h3>
                         <p class="item-desc">إسبريسو غني مع رغوة الحليب الكثيفة</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="فلات وايت" src="https://images.unsplash.com/photo-1494314671902-399b18174975?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">فلات وايت</h3>
+                        <p class="item-desc">قهوة أسترالية بحليب مخملي وقوام كثيف</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ايطالينو" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ايطالينو</h3>
+                        <p class="item-desc">قهوة بنكهة إيطالية أصيلة وحرفية</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="لاتيه" src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">لاتيه</h3>
+                        <p class="item-desc">إسبريسو ناعم مع الحليب المبخر بفن لاتيه</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="موكا" src="https://images.unsplash.com/photo-1578374173705-969cbe6f2d6b?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">موكا</h3>
+                        <p class="item-desc">قهوة بالشوكولاتة مع الحليب والكريمة</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">الشاي</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شاي كلاسيك" src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شاي كلاسيك</h3>
+                        <p class="item-desc">شاي أحمر تقليدي معبأ بالنكهة</p>
+                        <div class="item-price">1000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شاي نعناع" src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شاي نعناع</h3>
+                        <p class="item-desc">شاي بأوراق النعناع الطازج المنعش</p>
+                        <div class="item-price">1500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شاي ليمون" src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شاي ليمون</h3>
+                        <p class="item-desc">شاي ساخن بنكهة الليمون الطبيعي</p>
+                        <div class="item-price">1500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شاي خوخ" src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شاي خوخ</h3>
+                        <p class="item-desc">شاي معطر بنكهة الخوخ الحلوة</p>
+                        <div class="item-price">1500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شاي كرك" src="https://images.unsplash.com/photo-1576092762791-dd9e2220abd1?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شاي كرك</h3>
+                        <p class="item-desc">شاي حليب هندي بالهيل والقرفة والزنجبيل</p>
+                        <div class="item-price">1500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">المشروبات الساخنة</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="هوت شوكليت" src="https://images.unsplash.com/photo-1542990253-0b8be3acc0d3?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">هوت شوكليت</h3>
+                        <p class="item-desc">شوكولاتة ساخنة كريمية مع رغوة الحليب</p>
+                        <div class="item-price">3000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="هوت لوتس" src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">هوت لوتس</h3>
+                        <p class="item-desc">مشروب ساخن بنكهة بسكويت اللوتس الشهير</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="هوت اوريو" src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">هوت اوريو</h3>
+                        <p class="item-desc">مشروب شوكولاتة ساخن بنكهة بسكويت أوريو</p>
                         <div class="item-price">3500 <span class="currency">ريال</span></div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div id="sweets" class="menu-section">
-            <h2 class="section-title">الحلويات</h2>
+            <h3 class="subsection-title">القهوة المحقونة</h3>
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=400&q=80" class="item-image" alt="تشيز كيك">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="نايت اربيكيا كافيه" src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">سان سباستيان / تشيز كيك</p>
-                        <p class="item-desc">مخبوزة بعناية لتقديم قوام كريمي غني</p>
-                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                        <h3 class="item-name">نايت اربيكيا كافيه</h3>
+                        <p class="item-desc">قهوة محقونة بطابع ليلي ساحر</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=400&q=80" class="item-image" alt="كريب">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كوكيز وبندق" src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">كريب لوتس / اوريو / نوتيلا</p>
-                        <p class="item-desc">عجينة الكريب الرقيقة مع إضافاتك المفضلة</p>
+                        <h3 class="item-name">كوكيز وبندق</h3>
+                        <p class="item-desc">قهوة بنكهة الكوكيز الكريمي والبندق المحمص</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="تغاميسبر كافيه" src="https://images.unsplash.com/photo-1568649929103-28ffbefaca1e?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">تغاميسبر كافيه</h3>
+                        <p class="item-desc">قهوة محقونة بخلطة تيرا الحصرية</p>
                         <div class="item-price">4000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=400&q=80" class="item-image" alt="كنافة">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="زعفران وعسل" src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">كنافة بالدهن الحر / بالجبن</p>
-                        <p class="item-desc">حلاوة شرقية أصيلة تذوب في الفم</p>
+                        <h3 class="item-name">زعفران وعسل</h3>
+                        <p class="item-desc">قهوة فاخرة بالزعفران الذهبي والعسل الأصلي</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== المشروبات والكوكتيلات ===== -->
+        <section id="drinks" class="menu-section">
+            <div class="section-header">
+                <h2>كلاسيك درنك</h2>
+                <span class="sub">CLASSIC DRINK</span>
+            </div>
+
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ليمون ونعناع" src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ليمون ونعناع</h3>
+                        <p class="item-desc">عصير ليمون منعش مع أوراق النعناع الطازجة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="بطيخ احمر ونعناع" src="https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">بطيخ احمر ونعناع</h3>
+                        <p class="item-desc">عصير البطيخ الأحمر مع لمسة من النعناع</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شوكس فراوله" src="https://images.unsplash.com/photo-1502741126161-b048400d085d?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شوكس فراوله</h3>
+                        <p class="item-desc">عصير الفراولة الطازج المنعش</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="فراوله وليمون" src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">فراوله وليمون</h3>
+                        <p class="item-desc">مزيج رائع بين الفراولة والليمون</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="اناس ورمان" src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">اناناس ورمان</h3>
+                        <p class="item-desc">عصير الأناناس الاستوائي مع الرمان الأحمر</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="Season Cocktail" src="https://images.unsplash.com/photo-1437418747212-8d9709afab22?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">Season Cocktail</h3>
+                        <p class="item-desc">كوكتيل الموسم بأشهى فواكه الفصل</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="برتقال فريش" src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">برتقال فريش</h3>
+                        <p class="item-desc">عصير برتقال طبيعي 100% طازج</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="تيرا كافيه" src="https://images.unsplash.com/photo-1572286258217-215cf8e9c0bd?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">تيرا كافيه</h3>
+                        <p class="item-desc">المشروب المميز الخاص بتيرا</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">موكتيل</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="موكتيلا" src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">موكتيلا</h3>
+                        <p class="item-desc">موكتيل تيرا الخاص بمزيج فاكهي مميز</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ستروس كلاود" src="https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ستروس كلاود</h3>
+                        <p class="item-desc">موكتيل بطعم الحمضيات والقشدة المنعشة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="رينبو" src="https://images.unsplash.com/photo-1570696516188-ade861b84a49?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">رينبو</h3>
+                        <p class="item-desc">موكتيل قوس قزح بألوان وطعوم متعددة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="باينبل دريم" src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">باينبل دريم</h3>
+                        <p class="item-desc">حلم استوائي بنكهة الأناناس الفاخرة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="حلا هيمالايا" src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">حلا هيمالايا</h3>
+                        <p class="item-desc">موكتيل منعش بنكهة جبال الهيمالايا</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="لافندر فيز" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">لافندر فيز</h3>
+                        <p class="item-desc">موكتيل أنيق بنكهة الخزامى الفرنسية</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">سوفت درنك</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="فرجن ماهيتو" src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">فرجن ماهيتو</h3>
+                        <p class="item-desc">موهيتو منعش بدون كحول مع الليمون والنعناع</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ريد ماجيك" src="https://images.unsplash.com/photo-1587734195503-904fca47e0e9?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ريد ماجيك</h3>
+                        <p class="item-desc">سحر أحمر بنكهة الفواكه الحمراء</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="تروبيكانو" src="https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">تروبيكانو</h3>
+                        <p class="item-desc">مشروب استوائي بمزيج فواكه استوائية فاخرة</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="بلو هاواي" src="https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">بلو هاواي</h3>
+                        <p class="item-desc">مشروب أزرق بطعم هاواي الاستوائي</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="هافانا" src="https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">هافانا</h3>
+                        <p class="item-desc">مشروب كاريبي مميز بنكهات استوائية</p>
+                        <div class="item-price">3500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">كوكتيل</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="تيرا درنك" src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">تيرا درنك</h3>
+                        <p class="item-desc">كوكتيل تيرا الحصري بمزيج فواكه فاخر</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مالديف درنك" src="https://images.unsplash.com/photo-1502787530428-9989776d4612?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مالديف درنك</h3>
+                        <p class="item-desc">كوكتيل بطعم جزر المالديف الساحرة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ميلانو" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ميلانو</h3>
+                        <p class="item-desc">كوكتيل إيطالي أنيق بنكهات راقية</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ديجا" src="https://images.unsplash.com/photo-1606767041004-6b762ac6c97d?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ديجا</h3>
+                        <p class="item-desc">كوكتيل فاكهي مميز بطعم لا يُنسى</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="دراغون" src="https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">دراغون</h3>
+                        <p class="item-desc">كوكتيل بفاكهة التنين الاستوائية</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="لاقا" src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">لاقا</h3>
+                        <p class="item-desc">كوكتيل لاقا المميز بمزيج فواكه فريد</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== الحلويات ===== -->
+        <section id="sweets" class="menu-section">
+            <div class="section-header">
+                <h2>الحلا الإيطالي</h2>
+                <span class="sub">ITALIAN DESSERTS</span>
+            </div>
+
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="تراميسو" src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">تراميسو</h3>
+                        <p class="item-desc">حلوى إيطالية كلاسيكية بالقهوة والمسكربوني</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="جيز كيك لوتس" src="https://images.unsplash.com/photo-1562440499-64c9a111f713?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">جيز كيك لوتس</h3>
+                        <p class="item-desc">تشيز كيك بطبقة من بسكويت اللوتس الذهبي</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سان سباستيان" src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">سان سباستيان</h3>
+                        <p class="item-desc">تشيز كيك إسباني محروق بقوام كريمي غني</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شيز كيك التون" src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شيز كيك التون</h3>
+                        <p class="item-desc">تشيز كيك فاخر بنكهة التوت الأحمر</p>
+                        <div class="item-price">5500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="شيز كيك المنجا" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">شيز كيك المنجا</h3>
+                        <p class="item-desc">تشيز كيك بطبقة سخية من المانجو الاستوائي</p>
+                        <div class="item-price">5500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">الحلا الشرقي</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كريب كلاسيك" src="https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كريب كلاسيك</h3>
+                        <p class="item-desc">عجينة الكريب الرقيقة الأصلية مع السكر والليمون</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كريب اوريو" src="https://images.unsplash.com/photo-1584847642319-3d5dd97e5dde?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كريب اوريو</h3>
+                        <p class="item-desc">كريب محشو بقطع بسكويت أوريو والشوكولاتة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كريب لوتس" src="https://images.unsplash.com/photo-1552689486-f1c7e0f1cf07?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كريب لوتس</h3>
+                        <p class="item-desc">كريب رقيق محشو بكريمة اللوتس الكراميلية</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كريب دبي" src="https://images.unsplash.com/photo-1607478900766-efe13248b125?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كريب دبي</h3>
+                        <p class="item-desc">كريب فاخر بطعم دبي الشهير بالفستق والكنافة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كريب تيرا" src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كريب تيرا</h3>
+                        <p class="item-desc">كريب تيرا الحصري بخلطة سرية لذيذة</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">الحلا الإسباني والفواكه</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="فرنشي كريب" src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">فرنشي كريب</h3>
+                        <p class="item-desc">كريب بطعم فرنسي أصيل ولمسة راقية</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سوشي كريب" src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">سوشي كريب</h3>
+                        <p class="item-desc">كريب بشكل السوشي مع حشوات حلوة لذيذة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سويس رول" src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">سويس رول</h3>
+                        <p class="item-desc">رولات الكيك السويسرية المحشوة بالكريمة</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="روز رول" src="https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">روز رول</h3>
+                        <p class="item-desc">رولات حلوة بنكهة الورد الفاخر</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="وافل ايس كريم" src="https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">وافل ايس كريم</h3>
+                        <p class="item-desc">وافل بلجيكي ساخن مع كرة آيس كريم لذيذة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مكس وافل" src="https://images.unsplash.com/photo-1593500703130-bda288974354?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مكس وافل</h3>
+                        <p class="item-desc">وافل بمزيج من النكهات والصلصات الفاخرة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="بان كيك سلط" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">بان كيك سلط</h3>
+                        <p class="item-desc">بان كيك أمريكي مع شراب القيقب وفواكه طازجة</p>
+                        <div class="item-price">4000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="صحن فواكه تيرا" src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">صحن فواكه تيرا</h3>
+                        <p class="item-desc">طبق فواكه فاخر متنوع للمشاركة</p>
+                        <div class="item-price">10000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سلطة فواكه" src="https://images.unsplash.com/photo-1563746924237-f4471efba9b3?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">سلطة فواكه</h3>
+                        <p class="item-desc">سلطة فواكه طازجة بقطع فاكهة موسمية</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">الحلا الشرقي العربي</h3>
+            <div class="menu-items-grid">
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ام علي" src="https://images.unsplash.com/photo-1519915028121-7d3463d20b13?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">ام علي</h3>
+                        <p class="item-desc">حلوى مصرية شهيرة بالقشطة والمكسرات</p>
                         <div class="item-price">4500 <span class="currency">ريال</span></div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div id="hookah" class="menu-section">
-            <h2 class="section-title">أراكيل تيرا البابلية (طه)</h2>
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كنافة بالدهن الحر" src="https://images.unsplash.com/photo-1571167530149-c1105da4c2c7?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كنافة بالدهن الحر</h3>
+                        <p class="item-desc">كنافة شرقية أصيلة بالدهن الحر والقطر</p>
+                        <div class="item-price">4500 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كنافة بالنوتيلا" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كنافة بالنوتيلا</h3>
+                        <p class="item-desc">كنافة محشوة بكريمة النوتيلا الشهية</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="كنافة بالجبن العكاوي" src="https://images.unsplash.com/photo-1601001815853-3835274403b3?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">كنافة بالجبن العكاوي</h3>
+                        <p class="item-desc">كنافة كلاسيكية محشوة بالجبن العكاوي والقطر</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== الأراكيل ===== -->
+        <section id="hookah" class="menu-section">
+            <div class="section-header">
+                <h2>أراكيل تيرا البابلية</h2>
+                <span class="sub">TERRA HOOKAH · طه</span>
+            </div>
+
             <div class="menu-items-grid">
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1517032733470-360e5a8789cc?auto=format&fit=crop&w=400&q=80" class="item-image" alt="اركيلة 1">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="علك نعناع" src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">علك نعناع (مكس بارد)</p>
-                        <p class="item-desc">استمتع بألذ علكة مع قليل من النعناع</p>
+                        <h3 class="item-name">علك نعناع</h3>
+                        <p class="item-desc">استمتع بألذ علكة مع قليل من النعناع - مكس بارد</p>
                         <div class="item-price">5000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1528659101683-10e3ebf61a12?auto=format&fit=crop&w=400&q=80" class="item-image" alt="اركيلة 2">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سيشل انكليزي" src="https://images.unsplash.com/photo-1517032733470-360e5a8789cc?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">تيرا VIP (مفاجأة المكان)</p>
-                        <p class="item-desc">خلطة حصرية لا مثيل لها</p>
+                        <h3 class="item-name">سيشل انكليزي</h3>
+                        <p class="item-desc">إضافات إنكليزية غريبة نوعاً ما من الخريف والشتاء</p>
                         <div class="item-price">5000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
+
                 <div class="menu-item">
-                    <img src="https://images.unsplash.com/photo-1553531384-397c80973a0b?auto=format&fit=crop&w=400&q=80" class="item-image" alt="اركيلة 3">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="ويند هوك" src="https://images.unsplash.com/photo-1528659101683-10e3ebf61a12?auto=format&fit=crop&w=500&q=80"></div>
                     <div class="item-details">
-                        <p class="item-name">مكس ديجافو / صوفيا</p>
-                        <p class="item-desc">مزيج من الفواكه الآسيوية والحموضة المعتدلة</p>
+                        <h3 class="item-name">ويند هوك</h3>
+                        <p class="item-desc">مكس حلا خفيف يغازل الحواس برقة</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="تيرا VIP" src="https://images.unsplash.com/photo-1553531384-397c80973a0b?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">تيرا VIP</h3>
+                        <p class="item-desc">مفاجأة المكان - خلطة حصرية لا مثيل لها</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مكس نعناع" src="https://images.unsplash.com/photo-1575379341013-7eddb1a5ecdd?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مكس نعناع</h3>
+                        <p class="item-desc">النعناع الموسمي مع نسبة برودة في الدخان</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مكس تفاح" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مكس تفاح</h3>
+                        <p class="item-desc">مكس التفاح المصري مع السوري مع إضافة الهيل</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مكس ديجافو" src="https://images.unsplash.com/photo-1502741126161-b048400d085d?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مكس ديجافو</h3>
+                        <p class="item-desc">مكس يجمع بين الكيوي والليمون مع إضافة بسيطة من الحموضة والحلا</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="توت مكسيكانو" src="https://images.unsplash.com/photo-1498557850523-fd3d118b962e?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">توت مكسيكانو</h3>
+                        <p class="item-desc">مكس ما بين التوت البري الحامض والحلاوة الخفيفة</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="عنب رازقي" src="https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">عنب رازقي</h3>
+                        <p class="item-desc">عنب سوري أسود معتق بنكهة فاخرة</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="سويت اورنج" src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">سويت اورنج</h3>
+                        <p class="item-desc">نكهة البرتقال مع الكريمة الفرنسية</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="صوفيا" src="https://images.unsplash.com/photo-1562440499-64c9a111f713?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">صوفيا</h3>
+                        <p class="item-desc">يجمع ما بين الفواكه الآسيوية والفانيلا مع الآيس كريم</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="فواكه استوائية" src="https://images.unsplash.com/photo-1546173159-315724a31696?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">فواكه استوائية</h3>
+                        <p class="item-desc">الفواكه الحامضة مع الفواكه الحلوة بمزيج رائع</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="نيوليفر شوكليت" src="https://images.unsplash.com/photo-1542990253-0b8be3acc0d3?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">نيوليفر شوكليت</h3>
+                        <p class="item-desc">مزيج من الشوكولاتة السويسرية الفاخرة</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="بطيخ ونعناع" src="https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">بطيخ ونعناع</h3>
+                        <p class="item-desc">البطيخ الأحمر مع النعناع اللبناني</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="مكس الصيف" src="https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">مكس الصيف</h3>
+                        <p class="item-desc">مكس صيفي يجمع ما بين البطيخ الأصفر والأحمر</p>
+                        <div class="item-price">5000 <span class="currency">ريال</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-image-wrap"><img class="item-image" loading="lazy" alt="علك وفراولة" src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=500&q=80"></div>
+                    <div class="item-details">
+                        <h3 class="item-name">علك وفراولة</h3>
+                        <p class="item-desc">تكون نكهة الفراولة متوازنة مع العلكة</p>
                         <div class="item-price">5000 <span class="currency">ريال</span></div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-    </div>
+    </main>
+
+    <footer>
+        <div class="brand">تيـرا</div>
+        <div class="copy">© 2026 Terra Cafe — جميع الحقوق محفوظة</div>
+    </footer>
+
+    <button class="to-top" id="toTop" aria-label="العودة للأعلى">↑</button>
 
     <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.menu-section');
-            sections.forEach(sec => sec.classList.remove('active'));
+        // التنقل بين الأقسام
+        const buttons = document.querySelectorAll('.category-btn');
+        const sections = document.querySelectorAll('.menu-section');
 
-            const buttons = document.querySelectorAll('.category-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.target;
 
-            document.getElementById(sectionId).classList.add('active');
-            event.currentTarget.classList.add('active');
-            
+                buttons.forEach(b => b.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+
+                btn.classList.add('active');
+                document.getElementById(target).classList.add('active');
+
+                // التمرير لأعلى المحتوى مع مراعاة الـ navbar
+                const nav = document.querySelector('.category-nav-wrapper');
+                const offset = nav.offsetTop;
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+            });
+        });
+
+        // زر العودة للأعلى
+        const toTop = document.getElementById('toTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                toTop.classList.add('visible');
+            } else {
+                toTop.classList.remove('visible');
+            }
+        });
+        toTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        });
+
+        // معالجة فشل تحميل الصور - استبدال بصورة احتياطية
+        document.querySelectorAll('img.item-image').forEach(img => {
+            img.addEventListener('error', () => {
+                img.src = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80';
+            });
+        });
     </script>
 </body>
 </html>
